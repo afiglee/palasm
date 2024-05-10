@@ -501,7 +501,7 @@ int MAIN__(void)
     static integer comp[80];
     static logical linp, lerr;
     extern /* Subroutine */ int slip_(logical *, integer *, integer *, 
-	    integer *), exit_(void);
+	    integer *), sub_exit(void);
     static integer rest[72];
     extern /* Subroutine */ int plot_(), test_();
     static integer isym[192]	/* was [8][24] */, i8pro, iname[5];
@@ -647,7 +647,7 @@ L16:
     do_fio(&c__3, (char *)&ipal[0], (ftnlen)sizeof(integer));
     do_fio(&c__5, (char *)&iname[0], (ftnlen)sizeof(integer));
     e_wsfe();
-    exit_();
+    sub_exit();
 /*     GET 24 PIN NAMES */
 L17:
     for (j = 1; j <= 24; ++j) {
@@ -661,7 +661,7 @@ L17:
     io___59.ciunit = lunit_1.pms;
     s_wsfe(&io___59);
     e_wsfe();
-    exit_();
+    sub_exit();
 L24:
     ile = il;
 /*     BYPASS FUSE PLOT ASSEMBLY IF HAL ('H' IN LINE 1, COLUMN 1) */
@@ -874,7 +874,7 @@ L100:
 	do_fio(&c__5, (char *)&iname[0], (ftnlen)sizeof(integer));
 	e_wsfe();
     }
-    exit_();
+    sub_exit();
 L102:
     tweek_(&itype, lfuses_1.lfuses, lfuses_1.lphant);
 L108:
@@ -950,7 +950,7 @@ L135:
     if (iop != q) {
 	goto L108;
     }
-    exit_();
+    sub_exit();
 /*  SETTING THE PARAMETERS FOR THE SA0/SA1 TESTS */
 L200:
     ipctr = 0;
@@ -1270,7 +1270,7 @@ L25:
 	    "G\002,\002 DESCRIPTION OR FUNCTION TABLE KEY WORD\002)";
 
     /* Local variables */
-    extern /* Subroutine */ int exit_(void);
+    extern /* Subroutine */ int sub_exit(void);
     static logical lxor1;
 
     /* Fortran I/O blocks */
@@ -1294,7 +1294,7 @@ L10:
     io___142.ciunit = lunit_1.pms;
     s_wsfe(&io___142);
     e_wsfe();
-    exit_();
+    sub_exit();
 L20:
     *ic = 0;
     goto L10;
@@ -4383,9 +4383,9 @@ L115:
 
 /*  ******************************************************************** */
 
-/* Subroutine */ int exit_(void)
+/* Subroutine */ int sub_exit(void)
 {
     s_stop("", (ftnlen)0);
     return 0;
-} /* exit_ */
+} /* sub_exit */
 

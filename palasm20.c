@@ -490,7 +490,7 @@ int MAIN__(void)
     static logical lprd, lfix, linp, lerr;
     static integer inoo;
     extern /* Subroutine */ int slip_(logical *, integer *, integer *, 
-	    integer *, integer *, integer *), exit_(void);
+	    integer *, integer *, integer *), sub_exit(void);
     static integer rest[73];
     extern /* Subroutine */ int plot_(logical *, integer *, logical *, 
 	    integer *, integer *, logical *, integer *, logical *, integer *, 
@@ -660,7 +660,7 @@ L16:
     do_fio(&c__1, (char *)&inoo, (ftnlen)sizeof(integer));
     e_wsfe();
 
-    exit_();
+    sub_exit();
 /*     GET 20 PIN NAMES */
 L17:
     for (j = 1; j <= 20; ++j) {
@@ -674,7 +674,7 @@ L17:
     io___66.ciunit = lunit_1.pms;
     s_wsfe(&io___66);
     e_wsfe();
-    exit_();
+    sub_exit();
 L24:
     ile = il;
 /*     BYPASS FUSE PLOT ASSEMBLY IF HAL (H IN COLUMN 1, LINE 1) */
@@ -948,7 +948,7 @@ L118:
 	do_fio(&c__1, (char *)&inoo, (ftnlen)sizeof(integer));
 	e_wsfe();
     }
-    exit_();
+    sub_exit();
 L102:
     if (itype <= 4) {
 	tweek_(&itype, &iot, lfuses_1.lfuses, lfuses_1.lphant);
@@ -1035,7 +1035,7 @@ L135:
     if (iop != q) {
 	goto L108;
     }
-    exit_();
+    sub_exit();
 /*     ADDITION FOR SA1/SA0 TESTS */
 /*     SETTING THE PARAMETERS FOR SA1/SA0 TESTS */
 L200:
@@ -1620,7 +1620,7 @@ L60:
 
     /* Local variables */
     static logical lx1;
-    extern /* Subroutine */ int exit_(void);
+    extern /* Subroutine */ int sub_exit(void);
 
     /* Fortran I/O blocks */
     static cilist io___205 = { 0, 0, 0, fmt_15, 0 };
@@ -1645,7 +1645,7 @@ L10:
     io___205.ciunit = lunit_1.pms;
     s_wsfe(&io___205);
     e_wsfe();
-    exit_();
+    sub_exit();
 L20:
     *ic = 0;
     goto L10;
@@ -4562,11 +4562,11 @@ L40:
 
 /* *********************************************************************** */
 
-/* Subroutine */ int exit_(void)
+/* Subroutine */ int sub_exit(void)
 {
     s_stop("", (ftnlen)0);
     return 0;
-} /* exit_ */
+} /* sub_exit */
 
 
 /*  ************THIS SUBROUTINE IS ADDED FOR JEDEC FORMAT********* */
