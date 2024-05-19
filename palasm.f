@@ -1773,9 +1773,9 @@ C  PROGRAMMING COMPATIBILITY WITH DATA I/O PROGRAMMERS
       IMPLICIT INTEGER (A-Z)
       LOGICAL  LFUSES (32,64),LPHANT(32,64)
       CHARACTER ZERO,ONE,IOT,STAR,L,H,X,C,Z,N0,N1,NN,IPBUF(32)
-      CHARACTER TSTVEC(20,50),JC  
+      CHARACTER TSTVEC(20,50),JC,HCONV(16),IDECIO(4),ISUMIO(4)  
       INTEGER ISUM(4),IADR,STX,ETX,IDEC(4),IPT,IINP,J1,J2,J3,PINOUT
-      INTEGER IDECIO(4),ISUMIO(4),BUFIO(32),NFUSE,NTEST,XX
+      INTEGER BUFIO(32),NFUSE,NTEST,XX
       COMMON  /IPT/ IPT
       COMMON  /LFUSES/ LFUSES,LPHANT
       COMMON  /SUM/ ISUM,IDEC,IPBUF,BUFIO,NFUSE
@@ -1786,6 +1786,22 @@ C  PROGRAMMING COMPATIBILITY WITH DATA I/O PROGRAMMERS
       STX=2
       ETX=3
       J3 =0
+      HCONV(1)='0'
+      HCONV(2)='1'
+      HCONV(3)='2'
+      HCONV(4)='3'
+      HCONV(5)='4'
+      HCONV(6)='5'
+      HCONV(7)='6'
+      HCONV(8)='7'
+      HCONV(9)='8'
+      HCONV(10)='9'
+      HCONV(11)='A'
+      HCONV(12)='B'
+      HCONV(13)='C'
+      HCONV(14)='D'
+      HCONV(15)='E'
+      HCONV(16)='F'
 C
 C           ADDITIONS  TO GENERATE PINOUT AND
 C           FAMILY CODE.
@@ -1823,10 +1839,10 @@ C
       IDEC(J2)=IDEC(J1)/10
       IDEC(J1)=IDEC(J1)-10*IDEC(J2)
       XX=IDEC(J1)
-      IDECIO(J1)=CNV(XX)
+      IDECIO(J1)=HCONV(XX)
   150 CONTINUE
       XX=IDEC(1)
-      IDECIO(1)=CNV(XX)
+      IDECIO(1)=HCONV(XX)
       CALL SUMCHK
       WRITE(*,201)IDECIO,(IPBUF(I),I=1,NFUSE),STAR
   201 FORMAT(' L',4A1,' ',32A1,A1)
@@ -1855,8 +1871,9 @@ C
                ISUM(4) = MOD(ISUM(4),256)
   350          CONTINUE
                DO 360 I = 1,4
-               IDECIO(I) = MOD(J/10**(4-I),10)
-               ISUM(4) = ISUM(4) + IDECIO(I) + 48
+               XX = MOD(J/10**(4-I),10)
+               IDECIO(I) = HCONV(XX)
+               ISUM(4) = ISUM(4) + XX + 48
                ISUM(2) = MOD(ISUM(2)+ISUM(4)/256,256)
                ISUM(4) = MOD(ISUM(4),256)
   360          CONTINUE
@@ -1867,16 +1884,16 @@ C
 C           ENDIF       
 C
           XX=ISUM(2)/16  
-  380 ISUMIO(1)=CNV(XX)
+  380 ISUMIO(1)=HCONV(XX)
 C
       ISUM(2)=MOD(ISUM(2),16)
       XX=ISUM(2)
-      ISUMIO(2)=CNV(XX)
+      ISUMIO(2)=HCONV(XX)
       XX=ISUM(4)/16
-      ISUMIO(3)=CNV(XX)
+      ISUMIO(3)=HCONV(XX)
       ISUM(4)=MOD(ISUM(4),16)
       XX=ISUM(4)
-      ISUMIO(4)=CNV(XX)
+      ISUMIO(4)=HCONV(XX)
       WRITE(*,400) ETX,ISUMIO
   400 FORMAT(' ',A1,4A1,/)
       RETURN
