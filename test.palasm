@@ -1,0 +1,28 @@
+TITLE PATTERN REVISION AUTHOR COMPANY DATE
+7 SEGMENT DISPLAY DECODER & DRIVER 7SEG.PDS
+1.0
+PETER LEUNG
+IVE (TSING YI) 02/02/02
+CHIP _DECODER PALCE16V8
+; --------------------------------- Pin Declarations ----------------------------
+PIN 1 I3
+:
+PIN 4 I0 PIN 10 GND PIN 12 A
+:
+PIN 18 G PIN 20 VCC
+COMBINATORIAL ; INPUT
+COMBINATORIAL ; INPUT COMBINATORIAL ; OUTPUT
+COMBINATORIAL ; OUTPUT
+; --------------------------------- Boolean Equation Segment ----------------------------
+EQUATIONS
+/A = ( I2 * /I1 * I0 ) + ( /I3 * /I2 * /I1 * I0 ) equation
+; -------------------------------------Simulation Segment ---------------------------------
+; output
+SIMULATION
+TRACE_ON I3 I2 I1 I0 A B C D E F G
+SETF /I3 /I2 /I1 /I0 SETF /I3 /I2 /I1 I0
+SETF I3 I2 I1 I0 TRACE_OFF
+; set monitoring points
+; assign the logic states in steps
+; end of simulation
+
