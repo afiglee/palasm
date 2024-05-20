@@ -31,3 +31,25 @@ TEST_F(TestPalasm, ChkSum) {
   }
 
 }
+
+TEST_F(TestPalasm, Tweek) {
+
+  tweek(1);
+  cout << "LFUSES:" << endl;
+  for (size_t col = 0; col < 32; col++) {
+    for (size_t row = 0; row < 64; row++) {
+      cout << ((_lfuses[col][row])?"1":"0");
+    }
+    cout << endl;
+  }
+  cout << endl;
+  cout << "LPHANT:" << endl;
+  for (size_t col = 0; col < 32; col++) {
+    for (size_t row = 0; row < 64; row++) {
+      cout << ((_lphant[col][row])?"1":"0");
+    }
+    cout << endl;
+  }
+  cout << endl;
+  ASSERT_FALSE(true);
+}
