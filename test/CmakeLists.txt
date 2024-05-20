@@ -1,0 +1,18 @@
+
+add_executable(palasm.t
+        test.cpp
+)
+
+target_include_directories(palasm.t PRIVATE
+        .
+        ${PROJECT_SOURCE_DIR}/src/
+        )   
+
+target_link_libraries(palasm.t PRIVATE 
+        GTest::gtest_main
+        gmock
+        palasmlib
+        )        
+
+include(GoogleTest)
+gtest_discover_tests(palasm.t)
