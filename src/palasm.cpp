@@ -156,6 +156,7 @@ void Palasm::tweek(int chipType) {
                 }
             }
         }
+        
         for (size_t tt = 6; tt< 28; tt++) {
             for (size_t cc=0; cc<57; cc+=8) {
                 _lfuses[tt][cc+4]=false;
